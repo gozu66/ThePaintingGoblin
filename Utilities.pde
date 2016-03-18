@@ -41,6 +41,7 @@ void drawUT()
 {
   textAlign(CENTER);
   textSize(50);
+  fill(0);
   text(functionType, width / 2, 50);
   textAlign(BASELINE);
   textSize(15);
@@ -107,17 +108,35 @@ void drawUT()
           
      utility = 1/(1 + exp(4*value)); 
      value += 0.01f;
+     fill(255,0,0);
      ellipse(350 + (value * 250), (height - 100) - (utility * 500), 5, 5); 
      
      break;
      
-     //case 6:
-     ////LOGARITHMIC Decay
+     case 6:
+     //LOGARITHMIC Decay
      
      //float exp4 = 0.1f;
-     //utility = -pow(exp4, value);
+     ////utility = -pow(exp4, value);
+           
+     //utility = -log(value)/ -log(exp4);
+     ////utility = utility / 9;
      //value += 0.01f;  
-     //break;
+     
+     //float exp4 = 0.9f;
+     //utility = pow(exp4, value);
+     //value += 0.01f;
+     
+     //float exp3 = 0.1f;
+     //utility = pow(exp3, value);
+     //value += 0.01f;
+
+     
+     utility = -exp(value);
+     value += 0.01f;
+
+
+     break;
    }
 
    noStroke();
