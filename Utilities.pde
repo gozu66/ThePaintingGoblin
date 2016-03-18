@@ -30,8 +30,8 @@ void setupUT()
 }
 
 
-float value = 0, prevValue = 0;
-float utility = 0, prevUT = 0;
+float value = 0;
+float utility = 0;
 int state = 0;
 
 void drawUT()
@@ -47,30 +47,53 @@ void drawUT()
      //LINEAR EQUATION  
      //Y = MC+X
      
-     prevUT = utility;
      utility  = abs(value - 10);
-     
-     noStroke();
-     fill(255, 0, 0);
-     ellipse(100 + (value * 50), (height - 100) - (utility * 50), 5, 5);
-          
-     value += 1;
-     
+                    
      break;
-     
      
      case 1:
-     //EXPONENTIAL 
+     //STEP
+     utility = (value > 5) ? 10 : 0; 
      break;
      
-     
      case 2:
-     //LOGARITHMIC 
+     //EXPONENTIAL Increase
+     //y = x^a where a>1
+     
+     float exp1 = 1.05f;
+     utility = pow(value, exp1);
      break;
      
      
      case 3:
+     //LOGARITHMIC Increase
+     //y = x^a where 0 < a < 1
+     
+     float exp2 = 0.47f;
+     utility = pow(value, exp2);
+     
+     break;
+     
+     
+     case 4:
      //SIGNOID CURVE
      break;
    }
+
+   noStroke();
+   fill(255, 0, 0);
+   ellipse(100 + (value * 50), (height - 100) - (utility * 50), 5, 5);
+
+   value += 0.1f;
+}
+
+void keyPressed()
+{
+  if(key == ' ')
+  {
+    setupUT();
+    value = 0;
+    utility = 0;
+    state = (state > 4) ? 0 : state + 1;
+  }
 }
