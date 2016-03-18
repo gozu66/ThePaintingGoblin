@@ -1,24 +1,26 @@
-void setupUT()
-{
+void drawGrid()
+{  
   background(200);
+  textSize(12);
 
   fill(0);
-  int utilityNum = 10;
-  int valueNum = 1;
+  float  utilityNum = 1.0;
+  float valueNum = 0.1;
   
   rectMode(CENTER);
-  for (int i = 100; i < 600; i += 50)
-  {
-    text(utilityNum, 50, i + 25);
-    utilityNum--;
-    
-    text(valueNum, i + 25, width - 50);
-    valueNum++;
+  
+    for (int i = 100; i < 600; i += 50)
+    {
+      stroke(150);
+      line(i, height - 50, i, 100);
+      line(50, i, 600, i);
 
-    stroke(150);
-    line(i + 25, height - 100, i + 25, 100);
-    line(100, i, 600, i);
-  }
+      text(utilityNum, 50, i);
+      utilityNum -= 0.1f;
+      
+      text(valueNum, i + 25, width - 50);
+      valueNum += 0.1;  
+    }
   
   rectMode(CORNERS);
   noFill();
@@ -33,12 +35,19 @@ void setupUT()
 float value = 0;
 float utility = 0;
 int state = 0;
+String functionType = "Linear";
 
 void drawUT()
 {
-  if(value > 10 || value < 0)
+  textAlign(CENTER);
+  textSize(50);
+  text(functionType, width / 2, 50);
+  textAlign(BASELINE);
+  textSize(15);
+  
+  if(value > 1)
   {
-    value = (value > 10) ? 10 : 0;
+    value = 1;
   }
   
    switch(state)
@@ -47,21 +56,28 @@ void drawUT()
      //LINEAR EQUATION  
      //Y = MC+X
      
-     utility  = abs(value - 10);
+     utility  = abs(value - 1);
+     value += 0.01f;
                     
      break;
      
      case 1:
      //STEP
-     utility = (value > 5) ? 10 : 0; 
+     //if x > 0.5 then UT = 1.0 else UT = 0
+     utility = (value >= 0.5f) ? 1 : 0;
+     value += 0.01f;
+     
      break;
      
      case 2:
      //EXPONENTIAL Increase
      //y = x^a where a>1
+     // F(x) =  y  =  ab^x
      
-     float exp1 = 1.05f;
+     float exp1 = 2f;
      utility = pow(value, exp1);
+     value += 0.01f;
+     
      break;
      
      
@@ -69,31 +85,88 @@ void drawUT()
      //LOGARITHMIC Increase
      //y = x^a where 0 < a < 1
      
-     float exp2 = 0.47f;
+     float exp2 = 0.5f;
      utility = pow(value, exp2);
+     value += 0.01f;
      
      break;
      
-     
      case 4:
+     //EXPONENTIAL decay
+     //y = a^x where 0 < a < 1
+     
+     float exp3 = 0.1f;
+     utility = pow(exp3, value);
+     value += 0.01f;
+     
+     break;
+     
+     case 5:
      //SIGNOID CURVE
+     //y = 1/(1+e^x) (or y = 1/1+e^-x for reverse)
+          
+     utility = 1 / (1 + exp(4*value)); 
+     value += 0.01f;
+     ellipse(350 + (value * 250), (height - 100) - (utility * 500), 5, 5); 
+     
      break;
    }
 
    noStroke();
    fill(255, 0, 0);
-   ellipse(100 + (value * 50), (height - 100) - (utility * 50), 5, 5);
 
-   value += 0.1f;
+   if(state != 5)
+   {
+     ellipse(100 + (value * 500), (height - 100) - (utility * 500), 5, 5);
+     line(prevX, prevY, 100 + (value * 500), (height - 100) - (utility * 500));
+
+
+     prevX = 100 + (value * 500);
+     prevY = (height - 100) - (utility * 500);
+     
+   }
 }
+float prevX = 0, prevY = 0;
+
 
 void keyPressed()
 {
   if(key == ' ')
   {
-    setupUT();
-    value = 0;
-    utility = 0;
+    if(!play)
+    {
+      play = true;
+      return;
+    } 
+    
+    drawGrid();
     state = (state > 4) ? 0 : state + 1;
+    value = (state == 5) ? -1f : 0;
+    switch(state)
+    {
+      case 0:
+        functionType = "Linear";
+      break;
+      
+      case 1:
+        functionType = "Step Function";
+      break;
+      
+      case 2:
+        functionType = "Exponential Increase";
+      break;
+      
+      case 3:
+        functionType = "Logarithmic Increase";
+      break;
+      
+      case 4:
+        functionType = "Exponential Decay";
+      break;
+      
+      case 5:
+        functionType = "Signoid Curve";
+      break;
+    }
   }
 }

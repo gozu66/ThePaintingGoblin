@@ -1,11 +1,17 @@
 void setup()
 {
   size(700, 700);
-  //frameRate(1000);
-  setupUT();
+  frameRate(100);
+  drawGrid();
 }
 
+boolean play; 
 void draw()
 {
-  drawUT();
+  if(play)
+  {
+    drawUT();
+  }
+  
+  //println((int)value + " value     " + (int)utility + " utility");
 }
