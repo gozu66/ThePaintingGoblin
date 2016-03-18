@@ -13,5 +13,5 @@ void draw()
     drawUT();
   }
   
-  //println((int)value + " value     " + (int)utility + " utility");
+  println(value + " value     " + utility + " utility");
 }

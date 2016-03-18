@@ -105,11 +105,19 @@ void drawUT()
      //SIGNOID CURVE
      //y = 1/(1+e^x) (or y = 1/1+e^-x for reverse)
           
-     utility = 1 / (1 + exp(4*value)); 
+     utility = 1/(1 + exp(4*value)); 
      value += 0.01f;
      ellipse(350 + (value * 250), (height - 100) - (utility * 500), 5, 5); 
      
      break;
+     
+     //case 6:
+     ////LOGARITHMIC Decay
+     
+     //float exp4 = 0.1f;
+     //utility = -pow(exp4, value);
+     //value += 0.01f;  
+     //break;
    }
 
    noStroke();
@@ -140,8 +148,17 @@ void keyPressed()
     } 
     
     drawGrid();
-    state = (state > 4) ? 0 : state + 1;
-    value = (state == 5) ? -1f : 0;
+    
+    state = (state >= 5) ? 0 : state + 1;
+    
+    if(state == 5)
+    {
+      value = -1;
+    }
+    else 
+    {
+      value = 0;
+    }
     switch(state)
     {
       case 0:
@@ -166,6 +183,10 @@ void keyPressed()
       
       case 5:
         functionType = "Signoid Curve";
+      break;
+      
+      case 6:
+        functionType = "Logarithmic Decay";
       break;
     }
   }
