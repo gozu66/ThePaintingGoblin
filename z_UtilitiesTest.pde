@@ -1,3 +1,5 @@
+boolean play; 
+
 void drawGrid()
 {  
   background(200);
@@ -208,5 +210,9 @@ void keyPressed()
         functionType = "Logarithmic Decay";
       break;
     }
+  }
+  if(key == 'p')
+  {
+    play = !play;
   }
 }
