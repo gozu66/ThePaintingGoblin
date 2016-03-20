@@ -4,7 +4,7 @@ void setup()
   frameRate(60);
   //drawGrid();    //UT TEST
   
-  gob = new Goblin();
+  gob = new Goblin(50, 50);
 }
 
 Goblin gob;
@@ -15,6 +15,6 @@ void draw()
   //{
   //  drawUT();    //UT TEST
   //}
-  
+  inputs();
   gob.update();
 }

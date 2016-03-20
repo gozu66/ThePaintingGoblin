@@ -146,61 +146,61 @@ void drawUT()
 float prevX = 0, prevY = 0;
 
 
-void keyPressed()
-{
-  if(key == ' ')
-  {
-    if(!play)
-    {
-      play = true;
-      return;
-    } 
-    
-    drawGrid();
-    
-    state = (state >= 5) ? 0 : state + 1;
-    
-    if(state == 5)
-    {
-      value = -1;
-    }
-    else 
-    {
-      value = 0;
-    }
-    switch(state)
-    {
-      case 0:
-        functionType = "Linear";
-      break;
-      
-      case 1:
-        functionType = "Step Function";
-      break;
-      
-      case 2:
-        functionType = "Exponential Increase";
-      break;
-      
-      case 3:
-        functionType = "Logarithmic Increase";
-      break;
-      
-      case 4:
-        functionType = "Exponential Decay";
-      break;
-      
-      case 5:
-        functionType = "Signoid Curve";
-      break;
-      
-      case 6:
-        functionType = "Logarithmic Decay";
-      break;
-    }
-  }
-  if(key == 'p')
-  {
-    play = !play;
-  }
-}
+//void keyPressed()
+//{
+//  if(key == ' ')
+//  {
+//    if(!play)
+//    {
+//      play = true;
+//      return;
+//    } 
+//    
+//    drawGrid();
+//    
+//    state = (state >= 5) ? 0 : state + 1;
+//    
+//    if(state == 5)
+//    {
+//      value = -1;
+//    }
+//    else 
+//    {
+//      value = 0;
+//    }
+//    switch(state)
+//    {
+//      case 0:
+//        functionType = "Linear";
+//      break;
+//      
+//      case 1:
+//        functionType = "Step Function";
+//      break;
+//      
+//      case 2:
+//        functionType = "Exponential Increase";
+//      break;
+//      
+//      case 3:
+//        functionType = "Logarithmic Increase";
+//      break;
+//      
+//      case 4:
+//        functionType = "Exponential Decay";
+//      break;
+//      
+//      case 5:
+//        functionType = "Signoid Curve";
+//      break;
+//      
+//      case 6:
+//        functionType = "Logarithmic Decay";
+//      break;
+//    }
+//  }
+//  if(key == 'p')
+//  {
+//    play = !play;
+//  }
+//}

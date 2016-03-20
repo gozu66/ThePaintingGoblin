@@ -1,19 +1,19 @@
 class GameObject
 {
-  float x, y, w, h, _w, _h;
+  float w, h, _w, _h;
   
-  PVector pos, forward;
-  float theta;
+  PVector forward, pos;
+  float theta = 0, speed = 1f;
   
   PImage sprite;
   
-  GameObject()
+  GameObject(float x, float y)
   {
     //CHOOSE RANDOM SPRITES
     //HEAD EYES MOUTH BODY COLOR
-    
-    x = width / 2; 
-    y = height /2;
+    pos = new PVector(x, y);
+    forward = new PVector(0, -1);
+
     w = 20;
     h = 30;
     _w = w / 2;
@@ -26,27 +26,28 @@ class Goblin extends GameObject
 {
   int state = 0;
   
-  Goblin()
+  Goblin(float x, float y)
   {
-    
+    super(x, y);
   }
   
   void render()
   {
-    beginShape();
-    vertex(x, y - _h);
-    vertex(x + _w, y + _h);
-    vertex(x - _w, y + _h);
-    vertex(x, y - _h);
-    endShape();
+//    beginShape();
+//    vertex(0, 0 - _h);
+//    vertex(0 + _w, 0 + _h);
+//    vertex(0 - _w, 0 + _h);
+//    vertex(0, 0 - _h);
+//    endShape();
   }
   
   void update()
   {
-    //if(frameCount % 300 == 0)
-    //{
-    // println("call");
-    //}
+    forward.x = sin(theta);
+    forward.y = -cos(theta);
+
+    forward.mult(speed);
+
     
     switch(state)
     {
@@ -57,26 +58,38 @@ class Goblin extends GameObject
       break;
     }
     
-    move();  //MOVE AROUND
+    pushMatrix();
     
+      translate(pos.x, pos.y);
+      rotate(theta);
+
+    beginShape();
+    
+      vertex(0, 0 - _h);
+      vertex(0 + _w, 0 + _h);
+      vertex(0 - _w, 0 + _h);
+      vertex(0, 0 - _h);
+    
+    endShape();
+      
+    popMatrix();
     
     this.render();
   }
   
-  void move()
+  void move(int i)
   {
-    pushMatrix();
-    
-      
-      
-    popMatrix();
+    if(i == 0){
+      pos.add(forward);
+    }else{
+      pos.sub(forward);
+    }
   }
+  
+  void rotation(int i)
+  {
+    theta = (i == 0) ? theta + 0.05 : theta - 0.05;
+  }
+
 }
 
-//class Appliance extends GameObject
-//{
-//  Appliance()
-//  {
-    
-//  }
-//}
