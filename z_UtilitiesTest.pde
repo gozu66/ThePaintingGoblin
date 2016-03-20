@@ -117,25 +117,13 @@ void drawUT()
      
      case 6:
      //LOGARITHMIC Decay
-     
-     //float exp4 = 0.1f;
-     ////utility = -pow(exp4, value);
            
-     //utility = -log(value)/ -log(exp4);
-     ////utility = utility / 9;
-     //value += 0.01f;  
-     
-     //float exp4 = 0.9f;
-     //utility = pow(exp4, value);
-     //value += 0.01f;
-     
-     //float exp3 = 0.1f;
-     //utility = pow(exp3, value);
-     //value += 0.01f;
-
-     
-     utility = -exp(value);
-     value += 0.01f;
+//     utility = -log(value)/ -log(exp4);
+//     utility = utility / 9;
+//     value += 0.01f;  
+          
+//     utility = -exp(value);
+//     value += 0.01f;
 
 
      break;
