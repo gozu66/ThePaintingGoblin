@@ -3,7 +3,7 @@ class GameObject
   float w, h, _w, _h;
   
   PVector forward, pos;
-  float theta = 0, speed = 1f;
+  float theta = 0, speed = 5f;
   
   PImage sprite;
   
@@ -33,12 +33,12 @@ class Goblin extends GameObject
   
   void render()
   {
-//    beginShape();
-//    vertex(0, 0 - _h);
-//    vertex(0 + _w, 0 + _h);
-//    vertex(0 - _w, 0 + _h);
-//    vertex(0, 0 - _h);
-//    endShape();
+   beginShape();
+   vertex(0, 0 - _h);
+   vertex(0 + _w, 0 + _h);
+   vertex(0 - _w, 0 + _h);
+   vertex(0, 0 - _h);
+   endShape();
   }
   
   void update()
@@ -62,19 +62,10 @@ class Goblin extends GameObject
     
       translate(pos.x, pos.y);
       rotate(theta);
-
-    beginShape();
-    
-      vertex(0, 0 - _h);
-      vertex(0 + _w, 0 + _h);
-      vertex(0 - _w, 0 + _h);
-      vertex(0, 0 - _h);
-    
-    endShape();
+      
+      this.render();
       
     popMatrix();
-    
-    this.render();
   }
   
   void move(int i)
@@ -92,4 +83,3 @@ class Goblin extends GameObject
   }
 
 }
-

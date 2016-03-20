@@ -15,6 +15,8 @@ void draw()
   //{
   //  drawUT();    //UT TEST
   //}
+  
+  background(255);
   inputs();
   gob.update();
 }
