@@ -10,12 +10,15 @@ class Goblin extends GameObject
   Utility hungerUT;
   Utility sleepUT;
   Utility creativity;
+  
+  float easelDir = QUARTER_PI * 3;
+  float bedDir = PI * 1.25f;
 
   void goblinStart()
   {
     hungerUT = new Utility("hunger", 0.0f);
     sleepUT = new Utility("sleep", 0.0f);
-    creativity = new Utility("creativity", 0.5f);
+    creativity = new Utility("creativity", 0.1f);
     currentUT = creativity;
   }
   
@@ -35,20 +38,28 @@ class Goblin extends GameObject
       
       case "sleep":
         //
+        //theta = bedDir;
+        moveTo(bed.pos);
       break;
       
       case "creativity":
         //GO TO EASEL AND PAINT
+        
         bePainting();
+        //theta = easelDir;
+        //moveTo(easel.pos, easelDir);
+        moveTo(easel.pos);
       break;
     }
     
-    pushMatrix();  
-      translate(pos.x, pos.y);
-      rotate(theta);
-      this.render();
-    popMatrix();
+
     
+    pushMatrix();  
+    translate(pos.x, pos.y);
+    rotate(angle);
+    this.render();
+    popMatrix();
+
   }
     
   void render()
@@ -63,22 +74,22 @@ class Goblin extends GameObject
     endShape();
   }
   
-  void move(int i)
-  {
-    if(i == 0)
-    {
-      pos.add(forward);
-    }
-    else
-    {
-      pos.sub(forward);
-    }
-  }
+  //void move(int i)
+  //{
+  //  if(i == 0)
+  //  {
+  //    pos.add(forward);
+  //  }
+  //  else
+  //  {
+  //    pos.sub(forward);
+  //  }
+  //}
   
-  void rotation(int i)
-  {
-    theta = (i == 0) ? theta + 0.05 : theta - 0.05;
-  }
+  //void rotation(int i)
+  //{
+  //  theta = (i == 0) ? theta + 0.05 : theta - 0.05;
+  //}
   
   void timedUtilities()
   {

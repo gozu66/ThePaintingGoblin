@@ -19,8 +19,6 @@ void time()
   textSize(20);
   text(_hours + ":" + _mins, width - 100, 20);
   textSize(10);
-  //text(hours + " : " + mins, width - 100, 20);
-  //println(hours + " " + mins);
 }
 
 String addZeros(int i)

@@ -11,7 +11,6 @@ class GameObject
   {
     pos = new PVector(x, y);
     forward = new PVector(0, -1);
-
     w = 20;
     h = 30;
     _w = w / 2;
@@ -21,10 +20,12 @@ class GameObject
 
 class Appliance extends GameObject
 {
+  String name;
   
-  Appliance(float x, float y)
+  Appliance(float x, float y, String _name)
   {
     super(x, y);
+    name = _name;
   }
   
   void update()
@@ -38,6 +39,6 @@ class Appliance extends GameObject
     rect(pos.x, pos.y, 50, 50);
     fill(0);
     textAlign(BOTTOM);
-    text("Easel", pos.x + 5, pos.y + 20);
+    text(name, pos.x + 5, pos.y + 20);
   }
 }
