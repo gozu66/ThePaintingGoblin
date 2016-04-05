@@ -4,10 +4,16 @@ void setup()
   frameRate(60);
   //drawGrid();    //UT TEST
   
-  gob = new Goblin(50, 50);
+  gob = new Goblin(width / 2, height / 2);
+  
+  easelSpot = new PVector(width * 0.8, height - 110);
+  easel = new Appliance(easelSpot.x, easelSpot.y);
 }
 
 Goblin gob;
+
+Appliance easel;
+PVector easelSpot;
 
 void draw()
 {
@@ -16,7 +22,14 @@ void draw()
   //  drawUT();    //UT TEST
   //}
   
-  background(255);
+  background(100);
+  fill(255);
+  rect(130, 50, 700, 440);
+  
+  time();
   inputs();
   gob.update();
+  easel.update();
+  
+  showPaintingProgress();
 }

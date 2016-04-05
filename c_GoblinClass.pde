@@ -16,9 +16,9 @@ class Goblin extends GameObject
     hungerUT = new Utility("hunger", 0.0f);
     sleepUT = new Utility("sleep", 0.0f);
     creativity = new Utility("creativity", 0.5f);
+    currentUT = creativity;
   }
   
-  int state = 0;
   void update()
   {
     forward.x = sin(theta);
@@ -27,10 +27,19 @@ class Goblin extends GameObject
 
     timedUtilities();
     
-    switch(state)
+    switch(currentUT._name)
     {
-      case 0:
+      case "hunger":
         //
+      break;
+      
+      case "sleep":
+        //
+      break;
+      
+      case "creativity":
+        //GO TO EASEL AND PAINT
+        bePainting();
       break;
     }
     
@@ -41,7 +50,7 @@ class Goblin extends GameObject
     popMatrix();
     
   }
-  
+    
   void render()
   {
     fill(150, 150, 10);

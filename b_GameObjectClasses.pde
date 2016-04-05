@@ -9,8 +9,6 @@ class GameObject
   
   GameObject(float x, float y)
   {
-    //CHOOSE RANDOM SPRITES
-    //HEAD EYES MOUTH BODY COLOR
     pos = new PVector(x, y);
     forward = new PVector(0, -1);
 
@@ -31,6 +29,15 @@ class Appliance extends GameObject
   
   void update()
   {
-    
+     render(); 
+  }
+  
+  void render()
+  {
+    fill(150, 100, 0);
+    rect(pos.x, pos.y, 50, 50);
+    fill(0);
+    textAlign(BOTTOM);
+    text("Easel", pos.x + 5, pos.y + 20);
   }
 }

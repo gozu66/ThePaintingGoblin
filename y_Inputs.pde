@@ -13,19 +13,18 @@ void inputs()
 {
   if(keys[UP] || keys['W'])
   {
-    gob.move(0);
+    //gob.move(0);
   }
   if(keys[DOWN] || keys['S'])
   {
-    gob.move(1);
+    //gob.move(1);
   }
   if(keys[LEFT] || keys['A'])
   {
-    gob.rotation(1);
+    //gob.rotation(1);
   }
   if(keys[RIGHT] || keys['D'])
   {
-    gob.rotation(0);
+    //gob.rotation(0);
   }    
 }
-
