@@ -13,7 +13,10 @@ void bePainting()
 {
   if(frameCount % 100 == 0)
   {
-    println("fackkk");
-    paintingProgress += 1;
+    paintingProgress += 10;
+    if(paintingProgress >= paintingComplete)
+    {
+      paintingProgress = 0;
+    }
   }
 }

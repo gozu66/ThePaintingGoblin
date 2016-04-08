@@ -11,9 +11,9 @@ class Goblin extends GameObject
   Utility sleepUT;
   Utility creativity;
   
-  float easelDir = QUARTER_PI * 3;
-  float bedDir = PI * 1.25f;
-
+  PVector currentTarget;
+  float distToTarget;
+  
   void goblinStart()
   {
     hungerUT = new Utility("hunger", 0.0f);
@@ -24,9 +24,17 @@ class Goblin extends GameObject
   
   void update()
   {
+    if(currentTarget != null)
+    {
+      distToTarget = currentTarget.dist(pos);
+    }
+    
     forward.x = sin(theta);
     forward.y = -cos(theta);
     forward.mult(speed);
+
+    if(distToTarget > 1)
+      pos.add(forward);
 
     timedUtilities();
     
@@ -38,34 +46,31 @@ class Goblin extends GameObject
       
       case "sleep":
         //
-        //theta = bedDir;
+        currentTarget = bed.pos;
         moveTo(bed.pos);
+        
       break;
       
       case "creativity":
         //GO TO EASEL AND PAINT
         
         bePainting();
-        //theta = easelDir;
-        //moveTo(easel.pos, easelDir);
+        
+        currentTarget = easel.pos;
         moveTo(easel.pos);
       break;
     }
     
-
-    
     pushMatrix();  
     translate(pos.x, pos.y);
-    rotate(angle);
+    rotate(theta);
     this.render();
     popMatrix();
-
   }
     
   void render()
   {
-    fill(150, 150, 10);
-    
+    fill(150, 150, 10);    
     beginShape();
     vertex(0, 0 - _h);
     vertex(0 + _w, 0 + _h);
@@ -73,24 +78,7 @@ class Goblin extends GameObject
     vertex(0, 0 - _h);
     endShape();
   }
-  
-  //void move(int i)
-  //{
-  //  if(i == 0)
-  //  {
-  //    pos.add(forward);
-  //  }
-  //  else
-  //  {
-  //    pos.sub(forward);
-  //  }
-  //}
-  
-  //void rotation(int i)
-  //{
-  //  theta = (i == 0) ? theta + 0.05 : theta - 0.05;
-  //}
-  
+    
   void timedUtilities()
   {
     if(frameCount % 100 == 0)
@@ -113,8 +101,6 @@ class Goblin extends GameObject
     rect(10, 30, sleepUT.current * 50, 10);
     fill(0, 255, 0);
     rect(10, 50, creativity.current * 50, 10);  
-    
-    
   }
   
   float clamp(float value, float min, float max)
