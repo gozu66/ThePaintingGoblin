@@ -1,9 +1,12 @@
 void showPaintingProgress()
 {
+  //rectMode(CENTER);
+  float x = easel.pos.x - 25; 
+  float y = easel.pos.y - 40;
   fill(20);
-  rect(easel.pos.x, easel.pos.y - 20, 50, 10);
+  rect(x, y, 50, 10);
   fill(15, 200, 15);
-  rect(easel.pos.x, easel.pos.y - 20, paintingProgress / 2, 10);
+  rect(x, y, paintingProgress / 2, 10);
 }
 
 int paintingProgress = 0;

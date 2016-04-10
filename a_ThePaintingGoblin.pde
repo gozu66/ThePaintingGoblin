@@ -6,28 +6,42 @@ void setup()
   gob = new Goblin(width / 2, height / 2);
   
   easelSpot = new PVector(width * 0.8, height - 110);
-  easel = new Appliance(easelSpot.x, easelSpot.y, "easel");
+  easel = new Appliance(easelSpot, "easel");
   
   bedSpot = new PVector(width * 0.2f, height - 110);
-  bed = new Appliance(bedSpot.x, bedSpot.y, "bed");
+  bed = new Appliance(bedSpot, "bed");
+  
+  kitchenSpot = new PVector(width * 0.8f, 110);
+  kitchen = new Appliance(kitchenSpot, "kitchen");
 }
 
 Goblin gob;
 
-Appliance easel, bed;
-PVector easelSpot, bedSpot;
+Appliance easel, bed, kitchen;
+PVector easelSpot, bedSpot, kitchenSpot;
 
 void draw()
 { 
   background(100);
+  rectMode(CENTER);
   fill(255);
-  rect(130, 50, 700, 440);
+  rect(width / 2, height / 2, 700, 440);
   
   time();
   inputs();
   easel.update();
   bed.update();
+  kitchen.update();
   gob.update();
   
+  
   showPaintingProgress();
+  showStatus();
+}
+
+void showStatus()
+{
+  textSize(15);
+  fill(0);
+  text("Currently feeling " + gob.currentUT._name, 10, height - 10);
 }

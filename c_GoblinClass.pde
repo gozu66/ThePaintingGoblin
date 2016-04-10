@@ -16,9 +16,9 @@ class Goblin extends GameObject
   
   void goblinStart()
   {
-    hungerUT = new Utility("hunger", 0.0f);
-    sleepUT = new Utility("sleep", 0.0f);
-    creativity = new Utility("creativity", 0.1f);
+    hungerUT = new Utility("hungry", 0.0f);
+    sleepUT = new Utility("sleepy", 0.0f);
+    creativity = new Utility("creative", 0.1f);
     currentUT = creativity;
   }
   
@@ -40,26 +40,31 @@ class Goblin extends GameObject
     
     switch(currentUT._name)
     {
-      case "hunger":
+      case "hungry":
         //
+        currentTarget = kitchen.pos;
+        //rotateTowards()
       break;
       
-      case "sleep":
+      case "sleepy":
         //
         currentTarget = bed.pos;
-        moveTo(bed.pos);
+        //rotateTowards(bed.pos);
+        sleep();
         
       break;
       
-      case "creativity":
+      case "creative":
         //GO TO EASEL AND PAINT
         
         bePainting();
         
         currentTarget = easel.pos;
-        moveTo(easel.pos);
+        //rotateTowards(easel.pos);
       break;
     }
+    
+    rotateTowards(currentTarget);
     
     pushMatrix();  
     translate(pos.x, pos.y);
@@ -81,6 +86,7 @@ class Goblin extends GameObject
     
   void timedUtilities()
   {
+    rectMode(CORNER);
     if(frameCount % 100 == 0)
     {
       hungerUT.current += 0.01f;
@@ -125,6 +131,37 @@ class Goblin extends GameObject
     }
     return u;
   }
+  
+  void rotateTowards(PVector position)
+  {
+    float xDif = position.x - gob.pos.x;
+    float yDif = gob.pos.y - position.y;
+    theta = radians(atan2(xDif, yDif) * 180 / PI);
+  }
+    
+  float sleepProgress = 0, maxSleepProgress = 100;
+  
+  void sleep()
+  {
+      float x = bed.pos.x - 25; 
+      float y = bed.pos.y - 40;
+      fill(20);
+      rect(x, y, 50, 10);
+      fill(15, 200, 15);
+      rect(x, y, sleepProgress / 2, 10);
+
+    if(frameCount % 100 == 0)
+    {
+      sleepProgress += 10;
+      
+      if(sleepProgress >= maxSleepProgress)
+      {
+        sleepProgress = 0;
+        sleepUT.current = 0;
+      }
+    }
+  }
+
 }
 
 class Utility
@@ -136,5 +173,5 @@ class Utility
   {
     _name = name;
     current = amount;
-  }
+  }  
 }

@@ -3,7 +3,7 @@ class GameObject
   float w, h, _w, _h;
   
   PVector forward, pos;
-  float theta = 0, speed = 3f;
+  float theta = 0, speed = 2.5f;
   
   PImage sprite;
   
@@ -22,9 +22,9 @@ class Appliance extends GameObject
 {
   String name;
   
-  Appliance(float x, float y, String _name)
+  Appliance(PVector appPos, String _name)
   {
-    super(x, y);
+    super(appPos.x, appPos.y);
     name = _name;
   }
   
