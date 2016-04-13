@@ -13,6 +13,7 @@ class Goblin extends GameObject
   
   PVector currentTarget;
   float distToTarget;
+  boolean atTarget;
   
   void goblinStart()
   {
@@ -24,43 +25,49 @@ class Goblin extends GameObject
   
   void update()
   {
+    println(atTarget);
     if(currentTarget != null)
     {
       distToTarget = currentTarget.dist(pos);
+      if(distToTarget < 1)
+      {
+        atTarget = true;
+      }else{
+        atTarget = false;
+      }
     }
     
     forward.x = sin(theta);
     forward.y = -cos(theta);
     forward.mult(speed);
 
-    if(distToTarget > 1)
+    if(!atTarget)
+    {
       pos.add(forward);
+    } 
 
     timedUtilities();
     
     switch(currentUT._name)
     {
       case "hungry":
-        //
         currentTarget = kitchen.pos;
-        //rotateTowards()
       break;
       
       case "sleepy":
-        //
         currentTarget = bed.pos;
-        //rotateTowards(bed.pos);
-        sleep();
-        
+        if(atTarget)
+        {
+          sleep();
+        }
       break;
       
       case "creative":
-        //GO TO EASEL AND PAINT
-        
-        bePainting();
-        
         currentTarget = easel.pos;
-        //rotateTowards(easel.pos);
+        if(atTarget)
+        {
+          bePainting();
+        }
       break;
     }
     
@@ -89,26 +96,27 @@ class Goblin extends GameObject
     rectMode(CORNER);
     if(frameCount % 100 == 0)
     {
-      hungerUT.current += 0.01f;
-      sleepUT.current += 0.025f;
+      if(currentUT != hungerUT)hungerUT.current += 0.01f;
+      if(currentUT != sleepUT)sleepUT.current += 0.025f;
+      
       hungerUT.current = clamp(hungerUT.current, 0, 1);
       sleepUT.current = clamp(sleepUT.current, 0, 1);
+      
       currentUT = getCurrentUT();
-      println(currentUT._name);
     }
     
-    fill(100, 100, 100);
+    fill(grey);
     rect(10, 10, 50, 10);
     rect(10, 30, 50, 10);
     rect(10, 50, 50, 10);
-    fill(255, 0, 0);
+    fill(red);
     rect(10, 10, hungerUT.current * 50, 10);
-    fill(0, 0, 255);
+    fill(blue);
     rect(10, 30, sleepUT.current * 50, 10);
-    fill(0, 255, 0);
+    fill(green);
     rect(10, 50, creativity.current * 50, 10);  
   }
-  
+    
   float clamp(float value, float min, float max)
   {
     if(value > max || value < min)
@@ -147,7 +155,7 @@ class Goblin extends GameObject
       float y = bed.pos.y - 40;
       fill(20);
       rect(x, y, 50, 10);
-      fill(15, 200, 15);
+      fill(blue);
       rect(x, y, sleepProgress / 2, 10);
 
     if(frameCount % 100 == 0)

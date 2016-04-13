@@ -2,7 +2,7 @@ int mins = 00, hours = 00;
 
 void time()
 {
-  if(frameCount % 10 == 0)
+  if(frameCount % 1 == 0)
   {
     mins += 1; 
     

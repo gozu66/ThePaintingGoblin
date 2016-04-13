@@ -20,6 +20,11 @@ Goblin gob;
 Appliance easel, bed, kitchen;
 PVector easelSpot, bedSpot, kitchenSpot;
 
+color grey = color(100, 100, 100);
+color red = color(255, 0, 0);
+color green = color(0, 255, 0);
+color blue = color(0, 0, 255);  
+
 void draw()
 { 
   background(100);

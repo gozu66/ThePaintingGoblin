@@ -3,7 +3,7 @@ class GameObject
   float w, h, _w, _h;
   
   PVector forward, pos;
-  float theta = 0, speed = 2.5f;
+  float theta = 0, speed = 2f;
   
   PImage sprite;
   

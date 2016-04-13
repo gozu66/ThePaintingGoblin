@@ -5,7 +5,7 @@ void showPaintingProgress()
   float y = easel.pos.y - 40;
   fill(20);
   rect(x, y, 50, 10);
-  fill(15, 200, 15);
+  fill(green);
   rect(x, y, paintingProgress / 2, 10);
 }
 
