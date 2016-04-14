@@ -19,7 +19,7 @@ class Goblin extends GameObject
   {
     hungerUT = new Utility("hungry", 0.0f);
     sleepUT = new Utility("sleepy", 0.0f);
-    creativity = new Utility("creative", 0.1f);
+    creativity = new Utility("creative", 0.5f);
     currentUT = creativity;
   }
   
@@ -96,8 +96,8 @@ class Goblin extends GameObject
     rectMode(CORNER);
     if(frameCount % 100 == 0)
     {
-      if(currentUT != hungerUT)hungerUT.current += 0.01f;
-      if(currentUT != sleepUT)sleepUT.current += 0.025f;
+      hungerUT.current += 0.01f;
+      sleepUT.current += 0.005f;
       
       hungerUT.current = clamp(hungerUT.current, 0, 1);
       sleepUT.current = clamp(sleepUT.current, 0, 1);
