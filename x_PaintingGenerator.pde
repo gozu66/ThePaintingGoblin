@@ -1,11 +1,13 @@
 //PImage[] images;
+//PImage bg;
 //int num = 1;
 
 //void setup()
 //{  
 //  size(256, 256);
 //  noStroke();
-//  int rnd = 10;
+//  frameRate(1);
+//  int rnd = 3;
 //  images = new PImage[rnd];
   
 //  int r = (int)random(20, 255), g = (int)random(20, 255), b = (int)random(20, 255);
@@ -19,7 +21,49 @@
 //      tint(r,g,b,a);
 //      image(images[i], 0, 0, 256, 256);
 //  }
-//  println(r+g+b + " / " + (255*3));
+//  save("\\data\\currImage.png");
+//  bg = loadImage("currImage.png");
+//  image(bg, 0, 0, 256, 256);
+//  addNoise();
+//}
+
+//void scanLines(int vertHoriz)
+//{
+//  if(vertHoriz == 0)
+//  {
+    
+//  }
+//  else
+//  {
+    
+//  }
+//  //Add verticle rects
+//  //Effect pixels below
+//}
+
+//void addNoise()
+//{
+//  loadPixels();
+//  bg.loadPixels();
+//  for(int x = 0; x < width; x++)
+//  {
+//    for(int y = 0; y < height; y++)
+//    {
+//      int index = x+y*width;
+//      //select random x + y to ignore / draw
+//      bg.pixels[index] = bg.pixels[index]/2;
+//    }
+//  }
+//  bg.updatePixels();
+//  updatePixels();
+  
+//  tint(255,255,255, 100);
+//  image(bg, 0, 0, 256, 256);
+//}
+
+//void ellipses()
+//{
+//  //add ellipses and 
 //}
 
 //void draw()
@@ -29,7 +73,6 @@
 
 //void keyPressed()
 //{
-//  println("x");
 //  if(key == 'r')
 //  {
 //    setup();
@@ -52,21 +95,4 @@
 //   save(dir2 + "Painting("+num+").jpg");
 //   num++;
 // }
-//}
-
-//void verticalLines()
-//{
-//  //Add verticle rects
-//  //Effect pixels below
-//}
-
-//void horizontalLines()
-//{
-//  //Add horizontal rects
-//  //Effect pixels below
-//}
-
-//void ellipses()
-//{
-//  //add ellipses and 
 //}
