@@ -25,14 +25,16 @@ class Goblin extends GameObject
   
   void update()
   {
-    println(atTarget);
     if(currentTarget != null)
     {
       distToTarget = currentTarget.dist(pos);
+      
       if(distToTarget < 1)
       {
         atTarget = true;
-      }else{
+      }
+      else
+      {
         atTarget = false;
       }
     }
@@ -194,7 +196,6 @@ class Goblin extends GameObject
       }
     }
   }
-
 }
 
 class Utility

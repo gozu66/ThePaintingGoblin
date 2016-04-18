@@ -18,7 +18,10 @@ void setup()
 Goblin gob;
 
 Appliance easel, bed, kitchen;
+
 PVector easelSpot, bedSpot, kitchenSpot;
+
+boolean paused;
 
 color grey = color(100, 100, 100);
 color red = color(255, 0, 0);
@@ -26,22 +29,30 @@ color green = color(0, 255, 0);
 color blue = color(0, 0, 255);  
 
 void draw()
-{ 
-  background(100);
-  rectMode(CENTER);
-  fill(255);
-  rect(width / 2, height / 2, 700, 440);
+{
+  if(!paused)
+  {
+
+    background(100);
+    rectMode(CENTER);
+    fill(255);
+    rect(width / 2, height / 2, 700, 440);
   
-  time();
-  inputs();
-  easel.update();
-  bed.update();
-  kitchen.update();
-  gob.update();
-  
-  
-  showPaintingProgress();
-  showStatus();
+    time();
+    easel.update();
+    bed.update();
+    kitchen.update();
+    gob.update();
+    
+    
+    showPaintingProgress();
+    showStatus();
+  }
+      inputs();
+
+println(paused + " p");
+println(folderSelect + " fs");
+println(keys[' ']);
 }
 
 void showStatus()

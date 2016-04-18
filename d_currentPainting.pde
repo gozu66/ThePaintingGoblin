@@ -16,10 +16,11 @@ void bePainting()
 {
   if(frameCount % 100 == 0)
   {
-    paintingProgress += 10;
+    paintingProgress += 50;
     if(paintingProgress >= paintingComplete)
     {
       paintingProgress = 0;
+      makeGoodArt();
     }
   }
 }

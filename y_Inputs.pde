@@ -9,22 +9,35 @@ void keyReleased()
   keys[keyCode] = false;
 }
 
+boolean folderSelect = false;
 void inputs()
 {
-  if(keys[UP] || keys['W'])
+  if(keys[' '] && paused && !folderSelect)
   {
-    //gob.move(0);
+    folderSelect = true;
+    selectFolder("Select a folder to process:", "folderSelected");
   }
-  if(keys[DOWN] || keys['S'])
+  
+  if(keys['r'] && paused && !folderSelect)
   {
-    //gob.move(1);
+    //folderSelect = false;
+    paused = false;
   }
-  if(keys[LEFT] || keys['A'])
-  {
-    //gob.rotation(1);
-  }
-  if(keys[RIGHT] || keys['D'])
-  {
-    //gob.rotation(0);
-  }    
+  
+  //if(keys[UP] || keys['W'])
+  //{
+  //  gob.move(0);
+  //}
+  //if(keys[DOWN] || keys['S'])
+  //{
+  //  gob.move(1);
+  //}
+  //if(keys[LEFT] || keys['A'])
+  //{
+  //  gob.rotation(1);
+  //}
+  //if(keys[RIGHT] || keys['D'])
+  //{
+  //  gob.rotation(0);
+  //}    
 }
