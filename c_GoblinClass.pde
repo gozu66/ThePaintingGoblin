@@ -52,6 +52,10 @@ class Goblin extends GameObject
     {
       case "hungry":
         currentTarget = kitchen.pos;
+        if(atTarget)
+        {
+          eat();
+        }
       break;
       
       case "sleepy":
@@ -96,8 +100,8 @@ class Goblin extends GameObject
     rectMode(CORNER);
     if(frameCount % 100 == 0)
     {
-      hungerUT.current += 0.01f;
-      sleepUT.current += 0.005f;
+      hungerUT.current += 0.05f;
+      sleepUT.current += 0.01f;
       
       hungerUT.current = clamp(hungerUT.current, 0, 1);
       sleepUT.current = clamp(sleepUT.current, 0, 1);
@@ -148,7 +152,6 @@ class Goblin extends GameObject
   }
     
   float sleepProgress = 0, maxSleepProgress = 100;
-  
   void sleep()
   {
       float x = bed.pos.x - 25; 
@@ -166,6 +169,28 @@ class Goblin extends GameObject
       {
         sleepProgress = 0;
         sleepUT.current = 0;
+      }
+    }
+  }
+
+  float eatProgress = 0, maxEatProgress = 100;
+  void eat()
+  {
+      float x = kitchen.pos.x - 25; 
+      float y = kitchen.pos.y - 40;
+      fill(20);
+      rect(x, y, 50, 10);
+      fill(red);
+      rect(x, y, eatProgress / 2, 10);
+
+    if(frameCount % 100 == 0)
+    {
+      eatProgress += 25;
+      
+      if(eatProgress >= maxEatProgress)
+      {
+        eatProgress = 0;
+        hungerUT.current = 0;
       }
     }
   }
