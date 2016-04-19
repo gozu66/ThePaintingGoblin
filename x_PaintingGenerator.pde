@@ -26,18 +26,6 @@ void makeGoodArt()
   grabImagePixels();
 }
 
-void scanLines(int vertHoriz)
-{
-  if(vertHoriz == 0)
-  {
-    
-  }
-  else
-  {
-    
-  }
-}
-
 void grabImagePixels()
 {
   int[] randPixelCoordsW = new int[3];
@@ -64,13 +52,44 @@ void grabImagePixels()
     randHeight[i] = (int)random(30, 100);
   }
 
-  //int rndImage = (int)random(images.length - 1);
-  //images[rndImage].loadPixels();
-  for(int i = 0; i < images.length; i++)
-  {
-    images[i].loadPixels();
-  }
+  int rndImage = (int)random(images.length - 1);
+  images[rndImage].loadPixels();
   
+  loadPixels();
+  for(int x = 0; x < width; x++)
+  {
+    //int rndImage = (int)random(images.length - 1);
+    for(int y = 0; y < height; y++)
+    {
+      int index = x+y*width;
+      int imageIndex = (x - (width / 2 - 128)) + (y - (height / 2 - 128)) * 255;
+            
+      if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
+      {
+        if(x > randPixelCoordsW[0] - randWidth[0] && x < randPixelCoordsW[0] + randWidth[0] && y > randPixelCoordsH[0] - randHeight[0] && y < randPixelCoordsH[0] + randHeight[0])
+        {
+          pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+        if(x > randPixelCoordsW[1] - randWidth[1] && x < randPixelCoordsW[1] + randWidth[1] && y > randPixelCoordsH[1] - randHeight[1] && y < randPixelCoordsH[1] + randHeight[1])
+        {
+         pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+        if(x > randPixelCoordsW[2] - randWidth[2] && x < randPixelCoordsW[2] + randWidth[2] && y > randPixelCoordsH[2] - randHeight[2] && y < randPixelCoordsH[2] + randHeight[2])
+        {
+         pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+      }
+    }
+  }
+  updatePixels();
+  
+
+  addNoise();
+    streaks();
+}
+
+void streaks()
+{
   loadPixels();
   for(int x = 0; x < width; x++)
   {
@@ -82,22 +101,31 @@ void grabImagePixels()
             
       if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
       {
-        //if(x > randPixelCoordsW[0] - randWidth[0] && x < randPixelCoordsW[0] + randWidth[0] && y > randPixelCoordsH[0] - randHeight[0] && y < randPixelCoordsH[0] + randHeight[0])
-        {
           pixels[index] = images[rndImage].pixels[imageIndex];
-        }
-        //if(x > randPixelCoordsW[1] - randWidth[1] && x < randPixelCoordsW[1] + randWidth[1] && y > randPixelCoordsH[1] - randHeight[1] && y < randPixelCoordsH[1] + randHeight[1])
-        //{
-        //  pixels[index] = images[rndImage].pixels[imageIndex];
-        //}
-        //if(x > randPixelCoordsW[2] - randWidth[2] && x < randPixelCoordsW[2] + randWidth[2] && y > randPixelCoordsH[2] - randHeight[2] && y < randPixelCoordsH[2] + randHeight[2])
-        //{
-        //  pixels[index] = images[rndImage].pixels[imageIndex];
-        //}
       }
     }
   }
   updatePixels();
+}
+
+void addNoise()
+{
+  float noiseVal;
+  float noiseScale = 0.02;
+
+  for(int x = 0; x < width; x++)
+  {
+     for(int y = 0; y < height; y++)
+     {
+       if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
+       {
+         noiseDetail(10,0.5);
+          noiseVal = noise(x * noiseScale, y * noiseScale);
+          stroke(noiseVal*255, 255);
+          point(x,y);
+        }
+     }
+  }
 }
 
 void ellipses()
