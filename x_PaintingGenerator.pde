@@ -5,29 +5,25 @@ int r,g,b;
 
 void makeGoodArt()
 {  
-  //size(256, 256);
-  //noStroke();
-  //frameRate(1);
   paused = true;
   int rnd = 4;
   images = new PImage[rnd];
-  r = (int)random(20, 255); 
-  g = (int)random(20, 255);
-  b = (int)random(20, 255);
-  //background(r, g, b);
+  r = (int)random(100, 255); 
+  g = (int)random(100, 255);
+  b = (int)random(100, 255);
   fill(r,g,b);
-  rect(0,0,256,256);
+  rect(width / 2 - 128, height / 2 - 128,256,256);
   
   for(int i = 0; i < images.length; i++)
   {
       String name = str((int)random(30) + 1);
       images[i] = loadImage("img (" + name + ").png");
-      int a = (int)random(45, 75);
+      int a = (int)random(45, 150);
       tint(r,g,b,a);
-      image(images[i], 0, 0, 256, 256);
+      image(images[i], width / 2 - 128, height / 2 - 128, 256, 256);
   }
   
-  addNoise();
+  grabImagePixels();
 }
 
 void scanLines(int vertHoriz)
@@ -40,73 +36,69 @@ void scanLines(int vertHoriz)
   {
     
   }
-  //Add verticle rects
-  //Effect pixels below
 }
 
-void addNoise()
+void grabImagePixels()
 {
-  int randPixelCoordW1 = (int)random(256);
-  int randPixelCoordH1 = (int)random(256);
-  int randWidth1 = (int)random(30, 40);
-  int randHeight1 = (int)random(30, 40);
-  int randPixelCoordW2 = (int)random(256);
-  int randPixelCoordH2 = (int)random(256);
-  int randWidth2 = (int)random(30, 40);
-  int randHeight2 = (int)random(30, 40);
-  int randPixelCoordW3 = (int)random(256);
-  int randPixelCoordH3 = (int)random(256);
-  int randWidth3 = (int)random(30, 40);
-  int randHeight3 = (int)random(30, 40);
-  
-  for(int i = 0; i <images.length; i++)
+  int[] randPixelCoordsW = new int[3];
+  for(int i = 0; i < 3; i++)
   {
-    images[i].loadPixels();
+    randPixelCoordsW[i] =  width / 2 - 128 + (int)random(256);
   }
-  loadPixels();
-  for(int x = 0; x < 128; x++)
+  
+  int[] randPixelCoordsH = new int[3];
+  for(int i = 0; i < 3; i++)
   {
-    for(int y = 0; y < 128; y++)
+    randPixelCoordsH[i] =  height / 2 - 128 + (int)random(256);
+  }  
+  
+  int[] randWidth = new int[3];
+  for(int i = 0; i < 3; i++)
+  {
+    randWidth[i] =  (int)random(30, 100);
+  }
+
+  int[] randHeight = new int[3];
+  for(int i = 0; i < 3; i++)
+  {
+    randHeight[i] = (int)random(30, 100);
+  }
+
+  int rndImage = (int)random(images.length - 1);
+  images[rndImage].loadPixels();
+  
+  loadPixels();
+  for(int x = 0; x < width; x++)
+  {
+    for(int y = 0; y < height; y++)
     {
       int index = x+y*width;
-      if(x > randPixelCoordW1 - randWidth1 && x < randPixelCoordW1 + randWidth1 && y > randPixelCoordH1 - randHeight1 && y < randPixelCoordH1 + randHeight1){pixels[index] = 
-    images[(int)random(images.length-1)].pixels[(int)random(16000)];}
-      if(x > randPixelCoordW2 - randWidth2 && x < randPixelCoordW2 + randWidth2 && y > randPixelCoordH2 - randHeight2 && y < randPixelCoordH2 + randHeight2){pixels[index] = 
-    images[(int)random(images.length-1)].pixels[(int)random(16000)];}
-      if(x > randPixelCoordW3 - randWidth3 && x < randPixelCoordW3 + randWidth3 && y > randPixelCoordH3 - randHeight3 && y < randPixelCoordH3 + randHeight3){pixels[index] = 
-    images[(int)random(images.length-1)].pixels[(int)random(16000)];}
+      int imageIndex = (x - (width / 2 - 128)) + (y - (height / 2 - 128)) * 255;
+            
+      if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
+      {
+        if(x > randPixelCoordsW[0] - randWidth[0] && x < randPixelCoordsW[0] + randWidth[0] && y > randPixelCoordsH[0] - randHeight[0] && y < randPixelCoordsH[0] + randHeight[0])
+        {
+          pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+        if(x > randPixelCoordsW[1] - randWidth[1] && x < randPixelCoordsW[1] + randWidth[1] && y > randPixelCoordsH[1] - randHeight[1] && y < randPixelCoordsH[1] + randHeight[1])
+        {
+          pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+        if(x > randPixelCoordsW[2] - randWidth[2] && x < randPixelCoordsW[2] + randWidth[2] && y > randPixelCoordsH[2] - randHeight[2] && y < randPixelCoordsH[2] + randHeight[2])
+        {
+          pixels[index] = images[rndImage].pixels[imageIndex];
+        }
+      }
     }
   }
   updatePixels();
-  //String name = "currImage";
-  //save("\\data\\"+name+".png");
-  //bg = loadImage(name + ".png");
-
-  //tint(r,g,b);
-  //image(bg, 0, 0, 256, 256);
 }
 
 void ellipses()
 {
   //add ellipses and 
 }
-
-//void draw()
-//{
-  
-//}
-
-//void keyPressed()
-//{
-//  if(key == 'r')
-//  {
-//    setup();
-//  }
-//  if(key == ' ' && paused)
-//  {
-//   selectFolder("Select a folder to process:", "folderSelected");
-//  }
-//}
 
 void folderSelected(File selection) 
 {

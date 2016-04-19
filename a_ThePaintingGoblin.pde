@@ -48,11 +48,7 @@ void draw()
     showPaintingProgress();
     showStatus();
   }
-      inputs();
-
-println(paused + " p");
-println(folderSelect + " fs");
-println(keys[' ']);
+  inputs();
 }
 
 void showStatus()
