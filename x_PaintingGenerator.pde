@@ -64,12 +64,17 @@ void grabImagePixels()
     randHeight[i] = (int)random(30, 100);
   }
 
-  int rndImage = (int)random(images.length - 1);
-  images[rndImage].loadPixels();
+  //int rndImage = (int)random(images.length - 1);
+  //images[rndImage].loadPixels();
+  for(int i = 0; i < images.length; i++)
+  {
+    images[i].loadPixels();
+  }
   
   loadPixels();
   for(int x = 0; x < width; x++)
   {
+    int rndImage = (int)random(images.length - 1);
     for(int y = 0; y < height; y++)
     {
       int index = x+y*width;
@@ -77,18 +82,18 @@ void grabImagePixels()
             
       if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
       {
-        if(x > randPixelCoordsW[0] - randWidth[0] && x < randPixelCoordsW[0] + randWidth[0] && y > randPixelCoordsH[0] - randHeight[0] && y < randPixelCoordsH[0] + randHeight[0])
+        //if(x > randPixelCoordsW[0] - randWidth[0] && x < randPixelCoordsW[0] + randWidth[0] && y > randPixelCoordsH[0] - randHeight[0] && y < randPixelCoordsH[0] + randHeight[0])
         {
           pixels[index] = images[rndImage].pixels[imageIndex];
         }
-        if(x > randPixelCoordsW[1] - randWidth[1] && x < randPixelCoordsW[1] + randWidth[1] && y > randPixelCoordsH[1] - randHeight[1] && y < randPixelCoordsH[1] + randHeight[1])
-        {
-          pixels[index] = images[rndImage].pixels[imageIndex];
-        }
-        if(x > randPixelCoordsW[2] - randWidth[2] && x < randPixelCoordsW[2] + randWidth[2] && y > randPixelCoordsH[2] - randHeight[2] && y < randPixelCoordsH[2] + randHeight[2])
-        {
-          pixels[index] = images[rndImage].pixels[imageIndex];
-        }
+        //if(x > randPixelCoordsW[1] - randWidth[1] && x < randPixelCoordsW[1] + randWidth[1] && y > randPixelCoordsH[1] - randHeight[1] && y < randPixelCoordsH[1] + randHeight[1])
+        //{
+        //  pixels[index] = images[rndImage].pixels[imageIndex];
+        //}
+        //if(x > randPixelCoordsW[2] - randWidth[2] && x < randPixelCoordsW[2] + randWidth[2] && y > randPixelCoordsH[2] - randHeight[2] && y < randPixelCoordsH[2] + randHeight[2])
+        //{
+        //  pixels[index] = images[rndImage].pixels[imageIndex];
+        //}
       }
     }
   }
