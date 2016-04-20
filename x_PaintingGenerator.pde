@@ -19,7 +19,7 @@ void makeGoodArt()
       String name = str((int)random(30) + 1);
       images[i] = loadImage("img (" + name + ").png");
       int a = (int)random(45, 150);
-      tint(r,g,b,a);
+      tint(r,g,b,25);
       image(images[i], width / 2 - 128, height / 2 - 128, 256, 256);
   }
   
@@ -83,9 +83,15 @@ void grabImagePixels()
   }
   updatePixels();
   
-
-  addNoise();
-    streaks();
+  float rando = random(1);
+  if(rando > 0.5f)
+  {
+    addNoise();
+  }
+  else
+  {
+    streaks(); 
+  }
 }
 
 void streaks()
@@ -121,11 +127,13 @@ void addNoise()
        {
          noiseDetail(10,0.5);
           noiseVal = noise(x * noiseScale, y * noiseScale);
-          stroke(noiseVal*255, 255);
+          stroke(noiseVal*255, 200);
           point(x,y);
+          
         }
      }
   }
+  stroke(0);
 }
 
 void ellipses()

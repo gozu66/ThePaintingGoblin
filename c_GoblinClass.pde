@@ -103,7 +103,7 @@ class Goblin extends GameObject
     if(frameCount % 100 == 0)
     {
       hungerUT.current += 0.05f;
-      sleepUT.current += 0.01f;
+      sleepUT.current += 0.025f;
       
       hungerUT.current = clamp(hungerUT.current, 0, 1);
       sleepUT.current = clamp(sleepUT.current, 0, 1);
