@@ -1,7 +1,6 @@
 void setup()
 {
   size(960, 540);
-  //frameRate(60);
   
   gob = new Goblin(width / 2, height / 2);
   

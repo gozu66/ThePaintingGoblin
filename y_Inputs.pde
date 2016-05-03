@@ -20,24 +20,7 @@ void inputs()
   
   if(keys['r'] && paused && !folderSelect)
   {
-    //folderSelect = false;
+    folderSelect = false;
     paused = false;
   }
-  
-  //if(keys[UP] || keys['W'])
-  //{
-  //  gob.move(0);
-  //}
-  //if(keys[DOWN] || keys['S'])
-  //{
-  //  gob.move(1);
-  //}
-  //if(keys[LEFT] || keys['A'])
-  //{
-  //  gob.rotation(1);
-  //}
-  //if(keys[RIGHT] || keys['D'])
-  //{
-  //  gob.rotation(0);
-  //}    
 }

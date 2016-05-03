@@ -1,6 +1,5 @@
 void showPaintingProgress()
 {
-  //rectMode(CENTER);
   float x = easel.pos.x - 25; 
   float y = easel.pos.y - 40;
   fill(20);
@@ -16,8 +15,9 @@ void bePainting()
 {
   if(frameCount % 100 == 0)
   {
-    paintingProgress += 8;
-    //paintingProgress += 100;
+    //paintingProgress += 8;
+    paintingProgress += 100;
+    
     if(paintingProgress >= paintingComplete)
     {
       paintingProgress = 0;

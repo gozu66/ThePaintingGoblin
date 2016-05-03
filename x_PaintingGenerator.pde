@@ -18,7 +18,7 @@ void makeGoodArt()
   {
       String name = str((int)random(30) + 1);
       images[i] = loadImage("img (" + name + ").png");
-      int a = (int)random(45, 150);
+      int a = (int)random(100, 200);
       tint(r,g,b,25);
       image(images[i], width / 2 - 128, height / 2 - 128, 256, 256);
   }
@@ -58,7 +58,6 @@ void grabImagePixels()
   loadPixels();
   for(int x = 0; x < width; x++)
   {
-    //int rndImage = (int)random(images.length - 1);
     for(int y = 0; y < height; y++)
     {
       int index = x+y*width;
@@ -127,9 +126,8 @@ void addNoise()
        {
          noiseDetail(10,0.5);
           noiseVal = noise(x * noiseScale, y * noiseScale);
-          stroke(noiseVal*255, 200);
+          stroke(noiseVal*255, 150);
           point(x,y);
-          
         }
      }
   }
