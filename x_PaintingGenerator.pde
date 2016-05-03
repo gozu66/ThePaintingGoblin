@@ -153,7 +153,7 @@ void folderSelected(File selection)
    PImage fileToSave = createImage(255, 256, RGB);
    fileToSave.loadPixels();
    loadPixels();
-   int i = 0;
+   int i = 65025;
    for(int x = 0; x < width; x++)
    {
      for(int y = 0; y < height; y++)
@@ -161,15 +161,14 @@ void folderSelected(File selection)
        if(x > width / 2 - 128 && x < width / 2 + 128 && y > height / 2 - 128 && y < height / 2 + 128)
        {
         int index = x+y*width;
-        //fileToSave.pixels[index] = pixels[index];
         fileToSave.pixels[i] = pixels[index];
-        i++;
-        //println("xxx");
+        i--;
        }
      }
    }
    println(i);
    fileToSave.updatePixels();
+
    String dir2 = selection.getPath()+ "\\";
    fileToSave.save(dir2 + "Painting("+num+").jpg");
    num++;
