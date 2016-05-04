@@ -1,85 +1,116 @@
-import ddf.minim.*;
-
-Minim minim;
-AudioPlayer music;
+PImage[] images;
+PImage bg;
+int num = 1;
+int r,g,b;
 
 void setup()
-{
-  size(960, 540);
+{  
+ size(128, 128);
+ noStroke();
+ frameRate(1);
+ int rnd = 3;
+ images = new PImage[rnd];
+ r = (int)random(20, 255); 
+ g = (int)random(20, 255);
+ b = (int)random(20, 255);
+ background(r, g, b);
   
-  minim = new Minim(this);
-  music = minim.loadFile("audio\\goblinTheme.wav");
-  music.play();
-  music.loop();
-  
-  loadSprites();
-  
-  gob = new Goblin(width / 2, height / 2, gobSprite);
-  
-  easelSpot = new PVector(width * 0.79, height - 125);
-  easel = new Appliance(easelSpot, "easel", easelSprite);
-  
-  bedSpot = new PVector(width * 0.2f, height - 125);
-  bed = new Appliance(bedSpot, "bed", bedSprite);
-  
-  kitchenSpot = new PVector(width * 0.79f, 125);
-  kitchen = new Appliance(kitchenSpot, "kitchen", kitchenSprite);  
+ for(int i = 0; i < images.length; i++)
+ {
+     String name = str((int)random(50) + 1);
+     images[i] = loadImage("img (" + name + ").png");
+     int a = (int)random(45, 75);
+     tint(r,g,b,a);
+     image(images[i], 0, 0, width, height);
+ }
+ addNoise();
 }
 
-PImage floorSprite, easelSprite, bedSprite, kitchenSprite, gobSprite;
-
-void loadSprites()
+void scanLines(int vertHoriz)
 {
-  floorSprite = loadImage("textures\\floor.png");
-  easelSprite = loadImage("textures\\easel.png");
-  bedSprite = loadImage("textures\\bed.png");
-  kitchenSprite = loadImage("textures\\kitchen.png");
-  gobSprite = loadImage("textures\\artist.png");
+ if(vertHoriz == 0)
+ {
+    
+ }
+ else
+ {
+    
+ }
+ //Add verticle rects
+ //Effect pixels below
 }
 
-Goblin gob;
+void addNoise()
+{
+ int randPixelCoordW1 = (int)random(width);
+ int randPixelCoordH1 = (int)random(height);
+ int randWidth1 = (int)random(10, 45);
+ int randHeight1 = (int)random(10, 45);
+ int randPixelCoordW2 = (int)random(width);
+ int randPixelCoordH2 = (int)random(height);
+ int randWidth2 = (int)random(10, 45);
+ int randHeight2 = (int)random(10, 45);
+ int randPixelCoordW3 = (int)random(width);
+ int randPixelCoordH3 = (int)random(height);
+ int randWidth3 = (int)random(10, 45);
+ int randHeight3 = (int)random(10, 45);
+  
+ for(int i = 0; i <images.length; i++)
+ {
+   images[i].loadPixels();
+ }
+ loadPixels();
+ for(int x = 0; x < width; x++)
+ {
+   for(int y = 0; y < height; y++)
+   {
+     int index = x+y*width;
+     if(x > randPixelCoordW1 - randWidth1 && x < randPixelCoordW1 + randWidth1 && y > randPixelCoordH1 - randHeight1 && y < randPixelCoordH1 + randHeight1){pixels[index] = images[(int)random(images.length-1)].pixels[index];}
+     if(x > randPixelCoordW2 - randWidth2 && x < randPixelCoordW2 + randWidth2 && y > randPixelCoordH2 - randHeight2 && y < randPixelCoordH2 + randHeight2){pixels[index] = images[(int)random(images.length-1)].pixels[index];}
+     if(x > randPixelCoordW3 - randWidth3 && x < randPixelCoordW3 + randWidth3 && y > randPixelCoordH3 - randHeight3 && y < randPixelCoordH3 + randHeight3){pixels[index] = images[(int)random(images.length-1)].pixels[index];}
+   }
+ }
+ updatePixels();
+ //String name = "currImage";
+ //save("\\data\\"+name+".png");
+ //bg = loadImage(name + ".png");
 
-Appliance easel, bed, kitchen;
+ //tint(r,g,b);
+ //image(bg, 0, 0, 128, 128);
+}
 
-PVector easelSpot, bedSpot, kitchenSpot;
-
-boolean paused;
-
-color grey = color(100, 100, 100);
-color red = color(255, 0, 0);
-color green = color(0, 255, 0);
-color blue = color(0, 0, 255);  
+void ellipses()
+{
+ //add ellipses and 
+}
 
 void draw()
 {
-  if(!paused)
-  {
-
-    background(100);
-    imageMode(CENTER);
-    rectMode(CENTER);
-    fill(255);
-    //rect(width / 2, height / 2, 700, 440);
-    tint(255);
-    image(floorSprite, width / 2, height / 2, 700, 440);
-  
-    time();
-    easel.update();
-    bed.update();
-    kitchen.update();
-    gob.update();
-    
-    showPaintingProgress();
-    showStatus();
-  }else{
-    gob.render();
-  }
-  inputs();
   
 }
-void showStatus()
+
+void keyPressed()
 {
-  textSize(15);
-  fill(0);
-  text("Currently feeling " + gob.currentUT._name, 10, height - 10);
+ if(key == 'r')
+ {
+   setup();
+ }
+ if(key == ' ')
+ {
+  selectFolder("Select a folder to process:", "folderSelected");
+ }
+}
+
+void folderSelected(File selection) 
+{
+if (selection == null) 
+{
+  return;
+} 
+else 
+{
+  String dir2 = selection.getPath()+ "\\";
+  save(dir2 + "Painting("+num+").jpg");
+  num++;
+}
 }
