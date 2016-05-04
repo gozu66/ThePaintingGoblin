@@ -144,7 +144,7 @@ void folderSelected(File selection)
  } 
  else 
  {
-   PImage fileToSave = createImage(255, 256, RGB);
+   PImage fileToSave = createImage(256, 256, RGB);
    fileToSave.loadPixels();
    loadPixels();
    int i = 65025;

@@ -9,8 +9,8 @@ void setup()
   
   minim = new Minim(this);
   music = minim.loadFile("audio\\goblinTheme.wav");
-  music.play();
-  music.loop();
+  //music.play();
+  //music.loop();
   
   loadSprites();
   

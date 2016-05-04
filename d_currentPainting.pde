@@ -17,8 +17,8 @@ void bePainting()
   {
     if(gob.atTarget)
     {
-      paintingProgress += 8;
-      //paintingProgress += 100;
+      //paintingProgress += 8;
+      paintingProgress += 50;
     }
     if(paintingProgress >= paintingComplete)
     {
