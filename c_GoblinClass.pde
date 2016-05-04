@@ -92,7 +92,6 @@ class Goblin extends GameObject
     pushMatrix();  
     translate(pos.x, pos.y);
     tint(255);    
-
     image(sprite, 0, 0, 128, 128);
     popMatrix();
 

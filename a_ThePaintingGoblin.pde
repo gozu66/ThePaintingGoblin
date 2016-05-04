@@ -3,15 +3,16 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer music;
 
+boolean startScreen = true;
+
 void setup()
 {
   size(960, 540);
+  //fullScreen();
   
   minim = new Minim(this);
   music = minim.loadFile("audio\\goblinTheme.wav");
   music.setGain(100);
-  music.play();
-  music.loop();
   
   loadSprites();
   
@@ -51,8 +52,29 @@ color red = color(255, 0, 0);
 color green = color(0, 255, 0);
 color blue = color(0, 0, 255);  
 
+PFont font;
 void draw()
 {
+  if(startScreen)
+  {
+    background(200);
+    textAlign(CENTER);
+    font = createFont("fonts\\Dragon is coming.otf", 200);
+    textFont(font);
+    fill(0);
+    text("The Painting Goblin", width / 2, height * 0.5f);
+    textSize(50);
+    text("Press Enter to Start", width / 2, height * 0.6f);
+    
+    if(keyPressed)
+    {
+      startScreen = false;
+      font = createFont("fonts\\Fragmentcore.otf", 200);
+      music.play();
+      music.loop();
+    }
+  }else{
+  
   if(!paused)
   {
 
@@ -76,11 +98,12 @@ void draw()
     gob.render();
   }
   inputs();
-  
+  }
 }
 void showStatus()
 {
-  textSize(15);
+  textFont(font);
+  textSize(40);
   fill(0);
-  text("Currently feeling " + gob.currentUT._name, 10, height - 10);
+  text("Currently feeling " + gob.currentUT._name, 500, height - 10);
 }
