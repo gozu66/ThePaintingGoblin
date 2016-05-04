@@ -8,10 +8,6 @@ void makeGoodArt()
   paused = true;
   int rnd = 4;
   images = new PImage[rnd];
-  //r = (int)random(100, 255); 
-  //g = (int)random(100, 255);
-  //b = (int)random(100, 255);
-  //fill(r,g,b);
   fill(0);
   rect(width / 2 - 133, height / 2 - 133,266,266);
   
@@ -135,11 +131,6 @@ void addNoise()
      }
   }
   stroke(0);
-}
-
-void ellipses()
-{
-  //add ellipses and 
 }
 
 void folderSelected(File selection) 

@@ -3,9 +3,9 @@ void showPaintingProgress()
   float x = easel.pos.x - 25; 
   float y = easel.pos.y - 40;
   fill(20);
-  rect(x, y, 50, 10);
+  rect(x, y-30, 50, 10);
   fill(green);
-  rect(x, y, paintingProgress / 2, 10);
+  rect(x, y-30, paintingProgress / 2, 10);
 }
 
 int paintingProgress = 0;
@@ -17,8 +17,8 @@ void bePainting()
   {
     if(gob.atTarget)
     {
-      //paintingProgress += 8;
-      paintingProgress += 100;
+      paintingProgress += 8;
+      //paintingProgress += 100;
     }
     if(paintingProgress >= paintingComplete)
     {

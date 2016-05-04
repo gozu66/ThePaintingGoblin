@@ -1,6 +1,16 @@
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer music;
+
 void setup()
 {
   size(960, 540);
+  
+  minim = new Minim(this);
+  music = minim.loadFile("audio\\goblinTheme.wav");
+  music.play();
+  music.loop();
   
   loadSprites();
   

@@ -91,8 +91,6 @@ class Goblin extends GameObject
     
     pushMatrix();  
     translate(pos.x, pos.y);
-    if(paused)
-      println("render");
     tint(255);    
 
     image(sprite, 0, 0, 128, 128);
@@ -162,9 +160,9 @@ class Goblin extends GameObject
       float x = bed.pos.x - 25; 
       float y = bed.pos.y - 40;
       fill(20);
-      rect(x, y, 50, 10);
+      rect(x, y-30, 50, 10);
       fill(blue);
-      rect(x, y, sleepProgress / 2, 10);
+      rect(x, y-30, sleepProgress / 2, 10);
 
     if(frameCount % 100 == 0)
     {
@@ -184,9 +182,9 @@ class Goblin extends GameObject
       float x = kitchen.pos.x - 25; 
       float y = kitchen.pos.y - 40;
       fill(20);
-      rect(x, y, 50, 10);
+      rect(x, y-30, 50, 10);
       fill(red);
-      rect(x, y, eatProgress / 2, 10);
+      rect(x, y-30, eatProgress / 2, 10);
 
     if(frameCount % 100 == 0)
     {
