@@ -1,9 +1,10 @@
 class Goblin extends GameObject
 {
-  Goblin(float x, float y)
+  Goblin(float x, float y, PImage _sprite)
   {
     super(x, y);
     goblinStart();
+    sprite = _sprite;
   }
   
   Utility currentUT;
@@ -15,8 +16,11 @@ class Goblin extends GameObject
   float distToTarget;
   boolean atTarget;
   
+  PImage sprite;
+  
   void goblinStart()
   {
+    
     hungerUT = new Utility("hungry", 0.0f);
     sleepUT = new Utility("sleepy", 0.0f);
     creativity = new Utility("creative", 0.5f);
@@ -79,22 +83,21 @@ class Goblin extends GameObject
     
     rotateTowards(currentTarget);
     
-    pushMatrix();  
-    translate(pos.x, pos.y);
-    rotate(theta);
     this.render();
-    popMatrix();
   }
     
   void render()
   {
-    fill(150, 150, 10);    
-    beginShape();
-    vertex(0, 0 - _h);
-    vertex(0 + _w, 0 + _h);
-    vertex(0 - _w, 0 + _h);
-    vertex(0, 0 - _h);
-    endShape();
+    
+    pushMatrix();  
+    translate(pos.x, pos.y);
+    if(paused)
+      println("render");
+    tint(255);    
+
+    image(sprite, 0, 0, 128, 128);
+    popMatrix();
+
   }
     
   void timedUtilities()
@@ -102,8 +105,8 @@ class Goblin extends GameObject
     rectMode(CORNER);
     if(frameCount % 100 == 0)
     {
-      hungerUT.current += 0.05f;
-      sleepUT.current += 0.025f;
+      hungerUT.current += random(0.02f, 0.08f);
+      sleepUT.current += random(0.01f, 0.04f);
       
       hungerUT.current = clamp(hungerUT.current, 0, 1);
       sleepUT.current = clamp(sleepUT.current, 0, 1);

@@ -15,9 +15,11 @@ void bePainting()
 {
   if(frameCount % 100 == 0)
   {
-    //paintingProgress += 8;
-    paintingProgress += 100;
-    
+    if(gob.atTarget)
+    {
+      //paintingProgress += 8;
+      paintingProgress += 100;
+    }
     if(paintingProgress >= paintingComplete)
     {
       paintingProgress = 0;

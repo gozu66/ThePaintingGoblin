@@ -8,19 +8,22 @@ void makeGoodArt()
   paused = true;
   int rnd = 4;
   images = new PImage[rnd];
-  r = (int)random(100, 255); 
-  g = (int)random(100, 255);
-  b = (int)random(100, 255);
-  fill(r,g,b);
-  rect(width / 2 - 128, height / 2 - 128,256,256);
+  //r = (int)random(100, 255); 
+  //g = (int)random(100, 255);
+  //b = (int)random(100, 255);
+  //fill(r,g,b);
+  fill(0);
+  rect(width / 2 - 133, height / 2 - 133,266,266);
   
   for(int i = 0; i < images.length; i++)
   {
-      String name = str((int)random(30) + 1);
-      images[i] = loadImage("img (" + name + ").png");
-      int a = (int)random(100, 200);
-      tint(r,g,b,25);
-      image(images[i], width / 2 - 128, height / 2 - 128, 256, 256);
+     String name = str((int)random(30) + 1);
+     images[i] = loadImage("img (" + name + ").png");
+     int a = (int)random(100, 200);
+     tint(r,g,b,25);
+     imageMode(CORNER);
+     image(images[i], width / 2 - 128, height / 2 - 128, 256, 256);
+     imageMode(CENTER);
   }
   
   grabImagePixels();
@@ -166,9 +169,7 @@ void folderSelected(File selection)
        }
      }
    }
-   println(i);
    fileToSave.updatePixels();
-
    String dir2 = selection.getPath()+ "\\";
    fileToSave.save(dir2 + "Painting("+num+").jpg");
    num++;

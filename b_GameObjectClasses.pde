@@ -21,11 +21,13 @@ class GameObject
 class Appliance extends GameObject
 {
   String name;
+  PImage sprite;
   
-  Appliance(PVector appPos, String _name)
+  Appliance(PVector appPos, String _name, PImage _sprite)
   {
     super(appPos.x, appPos.y);
     name = _name;
+    sprite = _sprite;
   }
   
   void update()
@@ -36,9 +38,7 @@ class Appliance extends GameObject
   void render()
   {
     fill(150, 100, 0);
-    rect(pos.x, pos.y, 50, 50);
+    image(sprite, pos.x, pos.y, 128, 128);
     fill(0);
-    textAlign(BOTTOM);
-    text(name, pos.x + 5, pos.y + 20);
   }
 }

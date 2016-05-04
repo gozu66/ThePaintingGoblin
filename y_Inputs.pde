@@ -15,7 +15,7 @@ void inputs()
   if(keys[' '] && paused && !folderSelect)
   {
     folderSelect = true;
-    selectFolder("Select a folder to process:", "folderSelected");
+    selectFolder("Save painiting:", "folderSelected");
   }
   
   if(keys['r'] && paused && !folderSelect)

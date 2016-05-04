@@ -2,16 +2,29 @@ void setup()
 {
   size(960, 540);
   
-  gob = new Goblin(width / 2, height / 2);
+  loadSprites();
   
-  easelSpot = new PVector(width * 0.8, height - 110);
-  easel = new Appliance(easelSpot, "easel");
+  gob = new Goblin(width / 2, height / 2, gobSprite);
   
-  bedSpot = new PVector(width * 0.2f, height - 110);
-  bed = new Appliance(bedSpot, "bed");
+  easelSpot = new PVector(width * 0.79, height - 125);
+  easel = new Appliance(easelSpot, "easel", easelSprite);
   
-  kitchenSpot = new PVector(width * 0.8f, 110);
-  kitchen = new Appliance(kitchenSpot, "kitchen");
+  bedSpot = new PVector(width * 0.2f, height - 125);
+  bed = new Appliance(bedSpot, "bed", bedSprite);
+  
+  kitchenSpot = new PVector(width * 0.79f, 125);
+  kitchen = new Appliance(kitchenSpot, "kitchen", kitchenSprite);  
+}
+
+PImage floorSprite, easelSprite, bedSprite, kitchenSprite, gobSprite;
+
+void loadSprites()
+{
+  floorSprite = loadImage("textures\\floor.png");
+  easelSprite = loadImage("textures\\easel.png");
+  bedSprite = loadImage("textures\\bed.png");
+  kitchenSprite = loadImage("textures\\kitchen.png");
+  gobSprite = loadImage("textures\\artist.png");
 }
 
 Goblin gob;
@@ -33,9 +46,12 @@ void draw()
   {
 
     background(100);
+    imageMode(CENTER);
     rectMode(CENTER);
     fill(255);
-    rect(width / 2, height / 2, 700, 440);
+    //rect(width / 2, height / 2, 700, 440);
+    tint(255);
+    image(floorSprite, width / 2, height / 2, 700, 440);
   
     time();
     easel.update();
@@ -43,13 +59,14 @@ void draw()
     kitchen.update();
     gob.update();
     
-    
     showPaintingProgress();
     showStatus();
+  }else{
+    gob.render();
   }
   inputs();
+  
 }
-
 void showStatus()
 {
   textSize(15);
