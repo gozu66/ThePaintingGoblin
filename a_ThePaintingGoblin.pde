@@ -8,7 +8,6 @@ boolean startScreen = true;
 void setup()
 {
   size(960, 540);
-  //fullScreen();
   
   minim = new Minim(this);
   music = minim.loadFile("audio\\goblinTheme.wav");
