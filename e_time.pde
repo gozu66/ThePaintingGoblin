@@ -24,7 +24,6 @@ void time()
   text(_hours + ":" + _mins, width - 100, 20);
   text("Day " + day, width - 100, 40);
   textSize(10);
-  
 }
 
 String addZeros(int i)

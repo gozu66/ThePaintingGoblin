@@ -111,16 +111,21 @@ class Goblin extends GameObject
       currentUT = getCurrentUT();
     }
     
+    textSize(15);
+    text("Hunger", 10, 5, 100, 20);
+    text("Sleep", 10, 45, 100, 20);
+    text("Creativity", 10, 85, 100, 20);
+    
     fill(grey);
-    rect(10, 10, 50, 10);
-    rect(10, 30, 50, 10);
-    rect(10, 50, 50, 10);
+    rect(10, 20, 100, 10);
+    rect(10, 60, 100, 10);
+    rect(10, 100, 100, 10);
     fill(red);
-    rect(10, 10, hungerUT.current * 50, 10);
+    rect(10, 20, hungerUT.current * 100, 10);
     fill(blue);
-    rect(10, 30, sleepUT.current * 50, 10);
+    rect(10, 60, sleepUT.current * 100, 10);
     fill(green);
-    rect(10, 50, creativity.current * 50, 10);  
+    rect(10, 100, creativity.current * 100, 10);  
   }
     
   float clamp(float value, float min, float max)
@@ -193,6 +198,7 @@ class Goblin extends GameObject
       {
         eatProgress = 0;
         hungerUT.current = 0;
+        creativity.current += 0.4f;
       }
     }
   }
