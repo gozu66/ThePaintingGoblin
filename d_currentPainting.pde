@@ -17,7 +17,7 @@ void bePainting()
   {
     if(gob.atTarget)
     {
-      paintingProgress += 20;
+      paintingProgress += 100;
     }
     if(paintingProgress >= paintingComplete)
     {
@@ -25,7 +25,7 @@ void bePainting()
       makeGoodArt();
     }
     
-    gob.creativity.current -= 0.08f;
+    //gob.creativity.current -= 0.08f;
     
   }
 }

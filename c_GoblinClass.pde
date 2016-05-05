@@ -20,7 +20,6 @@ class Goblin extends GameObject
   
   void goblinStart()
   {
-    
     hungerUT = new Utility("hungry", 0.0f);
     sleepUT = new Utility("sleepy", 0.0f);
     creativity = new Utility("creative", 0.5f);

@@ -6,7 +6,7 @@ int r,g,b;
 void makeGoodArt()
 {  
   paused = true;
-  int rnd = 4;
+  int rnd = (int)random(3, 10);
   images = new PImage[rnd];
   fill(0);
   rect(width / 2 - 133, height / 2 - 133,266,266);
